@@ -83,5 +83,5 @@ library(dplyr)
 tidyMeanHAR <- ddply(tidyHAR, .(Subject, Activity), function(data) { colMeans(data[, -c(1, 2)]) })
 
 ## write to file
-write.table(tidyHAR, "tidyHAR.csv", row.names = FALSE, quote = FALSE)
-write.table(tidyMeanHAR, "tidyMeanHAR.csv", row.names = FALSE, quote = FALSE)
+write.table(tidyHAR, "tidyHAR.txt", row.names = FALSE, quote = FALSE)
+write.table(tidyMeanHAR, "tidyMeanHAR.txt", row.names = FALSE, quote = FALSE)

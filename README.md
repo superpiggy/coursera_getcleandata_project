@@ -9,6 +9,6 @@ Details are as follows.
 4. Read subject/activity data files and combine into one.
 5. Merge all measurements and activity/subject data into one dataframe.
 6. Change variable names into descriptive ones.
-   - The result file name of this tidy dataset is 'tidyHAR.csv'
+   - The result file name of this tidy dataset is 'tidyHAR.txt'
 7. From the data set in the above, generate another tidy dataset that contains mean values of each measurements for each subject/activity. 
-   - The result file name is `tidyMeanHAR.csv'
+   - The result file name is `tidyMeanHAR.txt'

@@ -1,6 +1,6 @@
 # Code Book
 
-This code book summarizes the variables of "tidyHAR.csv" and "tidyMeanHAR.csv"
+This code book summarizes the variables of "tidyHAR.txt" and "tidyMeanHAR.txt"
 
 ## Identifiers (2)
 
