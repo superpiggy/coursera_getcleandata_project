@@ -1,5 +1,5 @@
+## prepare files for this project by downloading and unzipping if necessary.
 prepareData <- function(base_dir) {
-
   url <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
   filename <- file.path(base_dir, "HAR_Dataset.zip")
   datadir <- file.path(base_dir, "UCI HAR Dataset")
@@ -25,22 +25,27 @@ prepareData <- function(base_dir) {
 ## 1. Merges the training and the test sets to create one data set.
 ## 2. Extracts only the measurements on the mean and standard deviation for each measurement.
 loadDataX <- function(datadir) {
-  X_train <- read.table(file.path(datadir, "train", "X_train.txt"))
-  X_test <- read.table(file.path(datadir, "test", "X_test.txt"))
-  
+  # Get indices of mean & stdandard deviation related measurements.
   features <- read.table(file.path(datadir, "features.txt"))
   wanted_index <- grep(".*(mean|std).*", features[, 2])
   
+  X_train <- read.table(file.path(datadir, "train", "X_train.txt"))
+  X_test <- read.table(file.path(datadir, "test", "X_test.txt"))
+  
+  # Before combining, select columns of interest.
   X_merged <- rbind(X_train[, wanted_index], X_test[, wanted_index])
   names(X_merged) <- features[wanted_index, 2]
   return (X_merged)
 }
 
 loadDataY <- function(datadir) {
+  # read 4 files
   Y_train_activities <- read.table(file.path(datadir, "train", "Y_train.txt"))
   Y_test_activities <- read.table(file.path(datadir, "test", "Y_test.txt"))
   train_subjects <- read.table(file.path(datadir, "train", "subject_train.txt"))
   test_subjects <- read.table(file.path(datadir, "test", "subject_test.txt"))
+  
+  # combine into one
   Y_train <- cbind(train_subjects, Y_train_activities)
   Y_test <- cbind(test_subjects, Y_test_activities)
   Y_merged <- rbind(Y_train, Y_test)
@@ -49,6 +54,7 @@ loadDataY <- function(datadir) {
   activity_labels = read.table(file.path(datadir, "activity_labels.txt"))
   Y_merged[, 2] = factor(Y_merged[, 2], levels = activity_labels[, 1], labels = activity_labels[, 2])
   
+  # set the names of two variables.
   names(Y_merged) = c("Subject", "Activity")
   return (Y_merged)
 }
